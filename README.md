@@ -82,7 +82,7 @@ version: 1.0
 | cmds-system-files | 기존 스킬 SKILL.md 갱신 (v4.10.2·rules 9종·허브 링크) | — |
 | cmdspace-hub | 신규 진입 스킬 `~/.claude/skills/cmdspace-hub/SKILL.md` | 이 허브의 인덱스 |
 
-> **미설치(선택):** `dev-orchestrator@cmdspace-plugins`(README는 13 에이전트라 하나 실제 1/1 — 실체 부족) · geo `playwright install chromium`(스크린샷용, 150MB) · `geo-report-pdf`용 pandoc.
+> **미설치(선택):** `dev-orchestrator@cmdspace-plugins`(13 에이전트·12 스킬 실측 확인 — 정훈님 기존 에이전트 32명과 역할 중복이라 보류) · geo `playwright install chromium`(스크린샷용, 150MB) · `geo-report-pdf`용 pandoc.
 
 ### 4단계 — 백업 (정훈님 GitHub)
 - 13개 repo 모두 `origin = https://github.com/Demian-Yim/<name>` · `upstream = 원저자`.
