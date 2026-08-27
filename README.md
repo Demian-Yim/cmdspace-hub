@@ -92,7 +92,7 @@ version: 1.0
 - 이 허브 폴더 자체는 `Demian-Yim/cmdspace-hub` repo.
 
 ### 5단계 — 3-AI 배포 (Eva·Emil)
-- `data/applied-skills.json`(SSOT)에 `geo`·`supanova-design-skill`·`cmdspace-hub` 3줄 등록 → `_automation/repo_skill_sync.py`(3일 주기 `DAE_ForkSkillSync`)가 `cross-ai/eva-fork-skills.md`·`emil-fork-skills.md`에 자동 반영.
+- `data/applied-skills.json`(SSOT)에 `geo`·`supanova-design-skill`·`cmdspace-hub` 3줄 등록 → `_automation/repo_skill_sync.py`(3일 주기 `DAE_ForkSkillSync`)가 `00 Skills/cross-ai/eva-fork-skills.md`·`emil-fork-skills.md`(허브 밖, 자동 생성)에 자동 반영.
 - 허브 전용 포터블 팩: [cross-ai/eva-cmdspace-pack.md](cross-ai/eva-cmdspace-pack.md) · [cross-ai/emil-cmdspace-pack.md](cross-ai/emil-cmdspace-pack.md).
 
 ---
