@@ -22,7 +22,7 @@ version: 1.0
 |---|---|---|---|---|
 | 1 | github.com/johnfkoo951 | 구요한 GitHub (64 repo) | 비포크·자산성 repo **10개** 클론 + 정훈님 계정 포크 | `_repos/` |
 | 2 | github.com/AgriciDaniel/claude-blog | 블로그 글쓰기·SEO/GEO 플러그인 (★1.9k) | 클론 + 포크 + **Max 플러그인 설치** | `_repos/claude-blog/` |
-| 3 | github.com/zubair-trabzada/geo-seo-claude | AI 검색(GEO)+SEO 감사 스킬 (★9.5k) | 클론 + 포크 + **Max 스킬 15종 설치**(venv 포함) | `_repos/geo-seo-claude/`, `~/.claude/skills/geo*` |
+| 3 | github.com/zubair-trabzada/geo-seo-claude | AI 검색(GEO)+SEO 감사 스킬 (★9.5k) | 클론 + 포크 + **Max 스킬 15종 설치**(시스템 Python 의존성) | `_repos/geo-seo-claude/`, `~/.claude/skills/geo*` |
 | 4 | github.com/uxjoseph/supanova-design-skill | 한국어 랜딩페이지 디자인 스킬 4종 | 클론 + 백업 repo + **Max 우산 스킬 설치** | `_repos/supanova-design-skill/`, `~/.claude/skills/supanova-design-skill/` |
 | 5 | cmdspace.work | 서비스 허브(서브도메인 30여 개) | 홈 스냅샷 + 서브도메인 12곳 스냅샷 + PDF 2종 | `50-hub-sites/`, `20-lecture/`, `40-portfolio/` |
 | 6 | slashpage.com/cmds-class | 강의 자료 포털 | **35 페이지 전량** Markdown 아카이브 + 인덱스 | `20-lecture/slashpage/` |
@@ -75,8 +75,8 @@ version: 1.0
 ### 3단계 — 설치 (Max에서 즉시 사용)
 | 대상 | 방법 | 결과 |
 |---|---|---|
-| geo-seo-claude | `bash install-win.sh` (비대화) | `~/.claude/skills/geo/` + `geo-*` 15 스킬 + 에이전트 5(`~/.claude/agents/geo-*.md`) + `.venv`(bs4·requests·lxml·playwright·flask…) |
-| claude-blog | `claude plugin marketplace add AgriciDaniel/claude-blog` → `claude plugin install claude-blog@agricidaniel-blog` | 32 스킬 · 5 에이전트 (`/blog write` 등) |
+| geo-seo-claude | `bash install-win.sh` (비대화) + `pip install --user -r requirements.txt` 수동 + `python -m playwright install chromium` | `~/.claude/skills/geo/` + `geo-*` 15 스킬 + 에이전트 5(`~/.claude/agents/geo-*.md`). ⚠️ Windows 설치판은 venv 없이 **시스템 Python 3.12에 `--user` 설치**인데 스크립트가 pip 실패를 조용히 삼킴(flask·playwright 누락) → 수동 재설치로 9종 import + Chromium 페이지 로드 확인 |
+| claude-blog | `claude plugin marketplace add AgriciDaniel/claude-blog` → `claude plugin install claude-blog@agricidaniel-blog` + `pip install --user textstat patchright google-genai` + `python -m patchright install chromium` | 32 스킬 · 5 에이전트 (`/blog write` 등). 플러그인 설치만으로는 Python 의존성이 안 깔림(`dependency_smoke.py` preflight/browser/audio fail) → 수동 보완 |
 | cmdspace-plugins | `claude plugin marketplace add johnfkoo951/cmdspace-plugins` → `claude plugin install research-pipeline@cmdspace-plugins` | 5 스킬(lit-search·lit-review·citation-manager·journal-formatter·research-pipeline) · 5 에이전트 |
 | supanova-design-skill | `~/.claude/skills/supanova-design-skill/` 우산 스킬 + `taste.md·redesign.md·soft.md·output.md` | 기존 `taste-skill` 계열과 **별개**로 공존 |
 | cmds-system-files | 기존 스킬 SKILL.md 갱신 (v4.10.2·rules 9종·허브 링크) | — |
@@ -143,7 +143,8 @@ cd "D:/00 Antigravity/00 Skills/cmdspace-hub" && git add -A && git commit -m "ch
 - 허브 파일: 10-system-files 19 · 20-lecture 34+36(slashpage) · 30-akm 7 · 40-portfolio 2 · 50-hub 3. HTML→MD 변환 22건 중 인코딩 깨짐 1건(hrprompt) 재변환 확인.
 - slashpage 35/35 (31 OK · 4 EMPTY: 07·14·17·20은 원 페이지 자체가 링크만 있는 얇은 페이지).
 - Max 설치: `claude plugin list`에 claude-blog·research-pipeline 로드, `~/.claude/skills/geo*` 16 폴더·`~/.claude/agents/geo-*` 5, 스킬 목록에 `geo`·`supanova-design-skill`·`cmdspace-hub` 노출 확인.
-- 미검증: geo Playwright 스크린샷·PDF 보고서(pandoc 미설치) — 필요 시 `python -m playwright install chromium`.
+- geo 스모크: `citability_scorer.py https://flowdesign.ai.kr` 블록별 채점 JSON 출력 성공 · Playwright Chromium으로 flowdesign.ai.kr 로드 성공. 미검증: `geo-report-pdf`(pandoc 미설치).
+- claude-blog: `dependency_smoke.py` 3컴포넌트 결과는 CATALOG §4 및 current_state 참조(초기 fail → 의존성 수동 설치 후 재실행).
 
 ## HISTORY
 - 2026-08-28 v1.0 신설 — 정훈님 지시("cmdspace 8개 소스 다운로드·정리, Eva/Max/Emil 사용 가능하게" + "00 Skills와 내 깃허브에 백업"). (Max)

@@ -25,7 +25,7 @@ version: 1.0
 | 9 | agent-archives | 도구·앱 | johnfkoo951 | 미표기 | 2026-01-12 | 0 | 0 | 0 | 0 | ❌ mac 앱(py 백엔드 이식 가능) | Eva | — |
 | 10 | claude-code-actions | 강의자료(GitHub Actions 워크숍) | joonlab→johnfkoo951 | MIT | 2026-03-04 | 6 | 0 | 6 | 0 | ✅ 클라우드 실행 | Max | 미설치(포크해서 Actions로) |
 | 11 | claude-blog | Claude Code 플러그인 | AgriciDaniel | MIT | 2026-08-26 | **32** | 30(`/blog *`) | 5+15 brain | 0 | ✅ install.ps1 | Max | **플러그인 설치** |
-| 12 | geo-seo-claude | Claude Code 스킬 스위트 | zubair-trabzada | MIT | 2026-08-27 | 1+15 ※README 13 | 12(`/geo *`) | 5 | 0 | ✅ Git Bash | Max | **설치**(venv) |
+| 12 | geo-seo-claude | Claude Code 스킬 스위트 | zubair-trabzada | MIT | 2026-08-27 | 1+15 ※README 13 | 12(`/geo *`) | 5 | 0 | ✅ Git Bash | Max | **설치**(시스템 Python) |
 | 13 | supanova-design-skill | 스킬 묶음(프롬프트 4) | uxjoseph | 미표기(taste-skill 준용) | 2026-03-17 | 4 | 0 | 0 | 0 | ✅ | 공통 | **우산 스킬 설치** |
 
 백업: 1~12 = `Demian-Yim/<name>` 포크(`isFork=true`), 13 = 독립 repo(원본이 taste-skill 포크라 GitHub fork 불가). 모두 `origin=Demian-Yim`, `upstream=원저자`.
@@ -128,7 +128,7 @@ version: 1.0
 - **skills 15 + 오케스트레이터 `geo`:** geo-audit · brand-mentions · citability · compare · content · crawlers · llmstxt · platform-optimizer · proposal · prospect · report · report-pdf · schema · technical · update.
 - **agents 5:** geo-ai-visibility · geo-content · geo-platform-analysis · geo-schema · geo-technical. **commands 12:** `/geo audit|quick|citability|crawlers|llmstxt|brands|platforms|schema|technical|content|report|report-pdf`.
 - **scripts 6**(brand_scanner · citability_scorer · crm_dashboard · fetch_page · llmstxt_generator · webapp) · **schema 6**(article-author · local-business · organization · product-ecommerce · software-saas · website-searchaction) · white-label/ · examples/(실제 감사 리포트 3종).
-- **설치(완료):** `bash install-win.sh` → `~/.claude/skills/geo/`(scripts·schema·hooks·`.venv`) + `geo-*` 15 + `~/.claude/agents/geo-*.md` 5. 시스템 Python 무변경. 미설치: Playwright Chromium(스크린샷), pandoc(PDF).
+- **설치(완료):** `bash install-win.sh` → `~/.claude/skills/geo/`(scripts·schema·hooks) + `geo-*` 15 + `~/.claude/agents/geo-*.md` 5. ⚠️ **Windows 판은 venv를 만들지 않고 시스템 Python에 `pip --user`** — 스크립트가 실패를 삼켜 flask·playwright가 빠졌던 것을 수동 `pip install --user -r requirements.txt`로 보완(9종 import OK) + Playwright Chromium 설치·로드 확인. 미설치: pandoc(PDF).
 - **재사용:** GEO = 2026 신규 강의 주제(도입 데이터: AI 유입 +527%, 전환 4.4×, 투자 마케터 23%) / scoring-methodology = "AI가 인용하는 글쓰기" 루브릭 / prospect+proposal+white-label = 컨설턴트 서비스화 완제품 / flowdesign.ai.kr `/geo audit` → `/geo llmstxt`.
 
 ### 13. supanova-design-skill
@@ -142,7 +142,8 @@ version: 1.0
 1. **akm-eval 데이터 전송** — 7단계 `api/submit` POST. 설치·실행 시 `consent.submit:false`로 시작.
 2. **저작권** — cmds-system-files·강의자료·HR 플레이북·PDF는 CMDSPACE 저작물(외부 재배포 금지). cmux-tips CC BY 4.0. 나머지 MIT/미표기.
 3. **볼트 충돌** — cmds-vault·cmds-llm-wiki·cmds-system-files의 rules(들여쓰기 TAB·frontmatter 7속성·100~900 폴더)는 정훈님 볼트 StarterKit 규약과 다름. 문구 차용만.
-4. **에이전트 과밀** — dev-orchestrator(13 에이전트)는 미설치 유지 권장. claude-blog brain agents 15는 플러그인 내부 `brain/`에 있고 글로벌 등록되지 않음.
+4. **플러그인 Python 의존성** — claude-blog는 플러그인 설치만으로 textstat·patchright·google-genai가 안 깔린다. `dependency_smoke.py --component preflight|browser|audio`로 검사 후 `pip install --user` 보완(2026-08-28 수행).
+5. **에이전트 과밀** — dev-orchestrator(13 에이전트)는 미설치 유지 권장. claude-blog brain agents 15는 플러그인 내부 `brain/`에 있고 글로벌 등록되지 않음.
 
 ## HISTORY
 - 2026-08-28 v1.0 신설 — Explore 서브에이전트 인벤토리 + Max 실측 대조. (Max)
