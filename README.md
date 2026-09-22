@@ -38,7 +38,7 @@ version: 1.0
 ├── cmdspace-hub/                     ← 이 허브 (git: Demian-Yim/cmdspace-hub)
 │   ├── README.md                     ← 지금 이 문서 (단계별 가이드)
 │   ├── CATALOG.md                    ← 자산 전수 표 (repo 13 · 웹 자료 · 설치 상태)
-│   ├── 10-system-files/              ← CMDS 시스템 파일 (공식 ZIP v4.10.2 풀어놓음)
+│   ├── 10-system-files/              ← CMDS 시스템 파일 (공식 ZIP v4.12.0 풀어놓음 · 구버전 `_archive/`)
 │   │   ├── CMDS-System-Files/        ←   CLAUDE.md·AGENTS.md·CMDS.md·CMDS-Guide.md·CMDS-Head-Quarter.md·DESIGN.md + rules/ 9종
 │   │   ├── vault-map-architecture.md ←   2볼트 구조·rules 8·commands 8+7·skills 62·agents 4 지도
 │   │   └── llm-wiki-showcase.md      ←   Karpathy 3층(Raw→Wiki→Schema) 구현 설명
@@ -51,7 +51,8 @@ version: 1.0
 │   ├── 30-akm-index/                 ← AKM Index v1.2 (P·C·H·L·X 5필러 × 25기준) KR/EN + 서술 축 S/A/O
 │   ├── 40-portfolio/                 ← yohan-ax-portfolio.pdf · cmdspace-brochure.pdf
 │   ├── 50-hub-sites/                 ← cmdspace.work 홈·apps·cmdtrace 스냅샷
-│   └── cross-ai/                     ← eva-cmdspace-pack.md · emil-cmdspace-pack.md (포터블)
+│   ├── cross-ai/                     ← eva-cmdspace-pack.md · emil-cmdspace-pack.md (포터블)
+│   └── 60-applied/                   ← 허브 자산을 실제로 적용한 결과물 (예: AKM 자가진단 D.A.E 74.5점)
 └── _repos/                           ← git 클론 13개 (origin=Demian-Yim 포크 · upstream=원저자)
     ├── cmds-system-files  cmds-llm-wiki  cmds-vault  akm-eval  cmux-tips
     ├── 9yohan-constellation  cmds-18-lec-pj-tutorial  cmdspace-plugins
@@ -79,7 +80,8 @@ version: 1.0
 | claude-blog | `claude plugin marketplace add AgriciDaniel/claude-blog` → `claude plugin install claude-blog@agricidaniel-blog` + `pip install --user textstat patchright google-genai` + `python -m patchright install chromium` | 32 스킬 · 5 에이전트 (`/blog write` 등). 플러그인 설치만으로는 Python 의존성이 안 깔림(`dependency_smoke.py` preflight/browser/audio fail) → 수동 보완 |
 | cmdspace-plugins | `claude plugin marketplace add johnfkoo951/cmdspace-plugins` → `claude plugin install research-pipeline@cmdspace-plugins` | 5 스킬(lit-search·lit-review·citation-manager·journal-formatter·research-pipeline) · 5 에이전트 |
 | supanova-design-skill | `~/.claude/skills/supanova-design-skill/` 우산 스킬 + `taste.md·redesign.md·soft.md·output.md` | 기존 `taste-skill` 계열과 **별개**로 공존 |
-| cmds-system-files | 기존 스킬 SKILL.md 갱신 (v4.10.2·rules 9종·허브 링크) | — |
+| cmds-system-files | 기존 스킬 SKILL.md 갱신 (v4.12.0·rules 9종·커맨드 10·허브 링크) | — |
+| akm-eval | `_repos/akm-eval` 복사 → `~/.claude/skills/akm-eval/` + **전송 잠금 오버라이드**(`consent.submit=false` 고정, 2026-09-22) | AKM 자가진단 실행 가능 — CMDSPACE 서버로 아무것도 보내지 않음 |
 | cmdspace-hub | 신규 진입 스킬 `~/.claude/skills/cmdspace-hub/SKILL.md` | 이 허브의 인덱스 |
 
 > **미설치(선택):** `dev-orchestrator@cmdspace-plugins`(13 에이전트·12 스킬 실측 확인 — 정훈님 기존 에이전트 32명과 역할 중복이라 보류) · geo `playwright install chromium`(스크린샷용, 150MB) · `geo-report-pdf`용 pandoc.
@@ -147,4 +149,5 @@ cd "D:/00 Antigravity/00 Skills/cmdspace-hub" && git add -A && git commit -m "ch
 - claude-blog: `dependency_smoke.py` 3컴포넌트 결과는 CATALOG §4 및 current_state 참조(초기 fail → 의존성 수동 설치 후 재실행).
 
 ## HISTORY
+- 2026-09-22 v1.1 재검토 — upstream 6 repo 동기화·v4.12.0 시스템 파일 교체·geo 재설치(templates)·akm-eval 설치(전송 잠금)·AKM 자가진단 리포트(`60-applied/`) 추가. (Max)
 - 2026-08-28 v1.0 신설 — 정훈님 지시("cmdspace 8개 소스 다운로드·정리, Eva/Max/Emil 사용 가능하게" + "00 Skills와 내 깃허브에 백업"). (Max)

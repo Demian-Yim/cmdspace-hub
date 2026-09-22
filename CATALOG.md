@@ -34,7 +34,7 @@ version: 1.0
 
 | 폴더 | 파일 | 원 URL | 형태 |
 |---|---|---|---|
-| 10-system-files | `CMDS-System-Files/` (6 문서 + rules 9) | system.cmdspace.work/files/CMDS-System-Files.zip | **원본 ZIP**(v4.10.2, 2026-08-27) |
+| 10-system-files | `CMDS-System-Files/` (6 문서 + rules 9) | system.cmdspace.work/files/CMDS-System-Files.zip | **원본 ZIP**(v4.12.0, 2026-09-21 · 구 v4.10.2는 `_archive/`) |
 | 10-system-files | system.cmdspace.work.md · system-docs.md · vault-map-architecture.md · llm-wiki-showcase.md | system / vault-map / llm-wiki .cmdspace.work | HTML→MD 변환 |
 | 20-lecture | monthly-obsidian-20-knowledge-base.md | labs.cmdspace.work/monthly-obsidian-20 | HTML→MD (강의노트 전문) |
 | 20-lecture | hrprompt-playbook-v3.md | hrprompt.cmdspace.work | HTML→MD (30+ 템플릿) |
@@ -52,13 +52,14 @@ version: 1.0
 - **정의:** 10,000+ 노트 Obsidian PKM을 AI 에이전트가 읽고 운영하게 만드는 6 시스템 문서 + 공유 규칙 + 9 아키텍처 패턴 배포판.
 - **6 시스템 문서(`files/`, precedence):** CLAUDE.md(1) · AGENTS.md(2) · CMDS.md(4) · CMDS-Guide.md(5) · CMDS-Head-Quarter.md(6) · DESIGN.md(9). 비공개 3종(ANTIGRAVITY.md=3, BRAIN.md=7, BRAIN_PROMPT.md=8) 미포함.
 - **rules 9:** blank-line · directory-structure · file-creation · file-move · frontmatter-standard · indentation · mermaid · video-project-workflow · wikilink.
-- **슬래시 커맨드(문서 언급, 실체는 cmds-vault):** /connect /merge /develop /share /inbox /lint /query /status.
+- **슬래시 커맨드(문서 언급, 실체는 cmds-vault):** /connect /merge /develop /share /inbox /lint /query /status + **v4.11 신설 /seeds /harvest (8→10)**.
+- **v4.11~4.12 변경(2026-08-29~09-21):** agent scope 분리(project `<vault>/.claude/` ↔ user `~/.claude/` 별개 계층, 볼트 정본 + symlink — `rules/directory-structure.md`) · Completed Artifact Closeout(`file-creation-rules.md`) · `system-version-audit.py`(버전·카운트 드리프트 검출) · 레거시 0XX 넘버링 폐기. 파일 버전: CLAUDE 4.11 · AGENTS 2.16 · CMDS 2.13 · Guide 2.11 · HQ 1.8.
 - **9 패턴:** precedence · STATIC/DYNAMIC · @include · Essential · required-for/optional-for · memory-type · token-estimate · changelog · shared rules.
 - **설치:** 6 문서를 볼트 루트, `rules/*.md`를 `.claude/rules/`, `{your-name}`·`{vault-path}` 치환. 의존성 없음.
 - **재사용:** precedence·memory-type 패턴 → "에이전트에게 문서 읽히는 법" 강의 모듈 / rules 9종 → 수강생 볼트 표준 규칙 팩 / CMDS 4단계 + 100~900 카테고리 → 지식관리 진단 레퍼런스.
 
 ### 2. cmds-llm-wiki
-- **정의:** Karpathy LLM Wiki(Raw→Wiki→Schema)를 Claude Code + Codex 이중 하네스로 실행하는 위성 볼트 템플릿(v1.11 Persona Layer).
+- **정의:** Karpathy LLM Wiki(Raw→Wiki→Schema)를 Claude Code + Codex 이중 하네스로 실행하는 위성 볼트 템플릿(v1.11.1 — 2026-09-21: `mainVaultRelated`를 advanced-uri 표준으로, paper-ingest 리소스를 `90. Settings/Skills/paper-ingest.md`로 이동).
 - **`.claude/commands` 11:** audit · capture-tabs · inbox · ingest · lint · onboard · query · refresh-context · reindex · status · verify · **`.codex/commands` 10**(onboard 제외) · **`.agents/skills` 10** 동일.
 - **hooks:** qmd-reindex.sh · validate-raw-source.sh · **scripts:** p7_verify.py(논문 12좌표 검증 게이트).
 - **템플릿 13 · Web Clipper JSON 18**(arxiv·github·hackernews·linkedin·substack·youtube 등).
@@ -146,4 +147,5 @@ version: 1.0
 5. **에이전트 과밀** — dev-orchestrator(13 에이전트)는 미설치 유지 권장. claude-blog brain agents 15는 플러그인 내부 `brain/`에 있고 글로벌 등록되지 않음.
 
 ## HISTORY
+- 2026-09-22 v1.1 upstream 재동기화 — 6 repo fast-forward(cmds-system-files v4.12.0 · cmds-llm-wiki v1.11.1 · 9yohan +4 · claude-blog +2(v2.2.0 유지) · geo-seo-claude +38 — report-pdf 템플릿 설치 버그·PDF 샘플고객 누출 수정·보안 하한 상향, 스킬 수 변동 없음) 후 Demian-Yim push. geo 재설치로 `templates/` 설치 확인. akm-eval Max 설치(전송 잠금 오버라이드). (Max)
 - 2026-08-28 v1.0 신설 — Explore 서브에이전트 인벤토리 + Max 실측 대조. (Max)
