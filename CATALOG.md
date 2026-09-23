@@ -2,13 +2,13 @@
 title: CMDSPACE Hub — 자산 카탈로그 (repo 13 · 웹 자료 · Max 설치 상태)
 owner: Max
 created: 2026-08-28
-updated: 2026-08-28
-version: 1.0
+updated: 2026-09-22
+version: 1.1
 ---
 
 # CATALOG — 전수 자산 표
 
-> 수량은 2026-08-28 로컬 파일 실측(`find`/`ls`). README 표기와 다른 곳은 ※로 정정. 상세 인벤토리는 §3.
+> 수량은 2026-08-28 로컬 파일 실측(`find`/`ls`), 버전·변경은 2026-09-22 재동기화 반영. README 표기와 다른 곳은 ※로 정정. 상세 인벤토리는 §3.
 
 ## 1. Repo 13 — 한눈에
 
@@ -17,7 +17,7 @@ version: 1.0
 | 1 | cmds-system-files | 참고 문서(시스템 파일) | johnfkoo951 | 미표기(CMDSPACE IP) | 2026-08-27 | 0 | 0 ※문서상 8 | 0 | **9** ※README 8 | ✅ | 공통 | 스킬 `cmds-system-files` |
 | 2 | cmds-llm-wiki | Obsidian 볼트 템플릿 | johnfkoo951 | 미표기(자유 fork) | 2026-08-17 | 10(.agents) | 11 claude + 10 codex | 0 | 0 | ⚠️ sed·qmd mac | Max | 미설치(볼트 스코프) |
 | 3 | cmds-vault | Obsidian 볼트 템플릿 | johnfkoo951(fork) | MIT(rules) | 2026-08-17 | 15 | 8 ※Win symlink | 0 | 7 ※README 8 | ⚠️ Gobi·symlink | Max | 미설치(참조용) |
-| 4 | akm-eval | 평가 루브릭(스킬 1) | johnfkoo951 | MIT | 2026-08-03 | 1 | 0 | 0 | 0 | ✅ | Max | 미설치 ⚠️§4 |
+| 4 | akm-eval | 평가 루브릭(스킬 1) | johnfkoo951 | MIT | 2026-08-03 | 1 | 0 | 0 | 0 | ✅ | Max | **설치**(전송 잠금 ⚠️§4) |
 | 5 | cmux-tips | 참고 문서 | johnfkoo951 | CC BY 4.0 | 2026-08-23 | 0 | 0 | 0 | 0 | ❌ mac 전용 | Emil | — |
 | 6 | 9yohan-constellation | 참고 문서(페르소나 카드 10) | johnfkoo951 | 미표기 | 2026-08-23 | 0 | 0 | 0(카드 10) | 0 | ✅ 문서 | Eva | — |
 | 7 | cmds-18-lec-pj-tutorial | 강의자료·튜토리얼 | johnfkoo951 | 미표기 | 2026-07-06 | 0 | 8 | 0 | 0 | ✅ | Max | 미설치(프로젝트 스코프) |
@@ -80,8 +80,8 @@ version: 1.0
 - **정의:** AKM Index v1.2(5필러×25기준, 0~100)로 자기 지식관리 시스템을 증거 기반 셀프 평가하고 리포트 생성하는 Claude Code 스킬(v1.2.2).
 - **references 6:** rubric.md · rubric-en.md · report-schema.md · report-template.html(성적표) · runtime-paths.md(Codex/Gemini/Grok/Hermes/OpenClaw 경로 레지스트리) + README.
 - **필러:** P Prompt 20% · C Context 25% · H Harness 20% · L Loop 20% · X Interop&Governance 15%. 레벨 0~4, 밴드 M0~M4.
-- **설치:** `git clone … ~/.claude/skills/akm-eval` 또는 ZIP → "AKM 평가해줘". 10~60분 7단계.
-- **⚠️ 데이터 전송:** 7단계에서 `akm-report.json`을 `akm.cmdspace.work/api/submit`으로 POST(동의 플래그 `consent.submit`, 거부 시 로컬만). 설치하면 **평가 전 정훈님 동의 확인 필수** — 그래서 이번엔 미설치, 루브릭 원문은 `30-akm-index/`로 활용.
+- **설치(완료 2026-09-22):** `_repos/akm-eval` → `~/.claude/skills/akm-eval/` 복사 → "AKM 평가해줘". 10~60분 7단계. 첫 적용 결과: `60-applied/2026-09-22-AKM-self-assessment-DAE.md`(D.A.E 74.5점 M3).
+- **⚠️ 데이터 전송 — 잠금 적용:** 원본은 7단계에서 `akm-report.json`을 `akm.cmdspace.work/api/submit`으로 POST한다. 설치본 `SKILL.md` 끝에 **D.A.E 로컬 오버라이드**를 붙여 `consent.submit=false`를 고정했다(publicCard·showRealName 등도 전부 false). 정훈님이 명시적으로 "제출해"라고 할 때만 전송.
 - **재사용:** 수강 전/후 진단 평가지 / "자기보고 상한 1점·증거 필수" 규칙 / 성적표 템플릿 리브랜딩.
 
 ### 5. cmux-tips
@@ -140,7 +140,7 @@ version: 1.0
 - **재사용:** 한국어 타이포 표준 → 강의 모집 랜딩 품질 / output-skill = 모든 AI 산출물 범용 규칙 / laziness 11편 = "LLM은 왜 게으른가" 1회차 강의 자료 / 수치 슬라이더 = 프롬프트 파라미터화 실습.
 
 ## 4. 요주의 사항
-1. **akm-eval 데이터 전송** — 7단계 `api/submit` POST. 설치·실행 시 `consent.submit:false`로 시작.
+1. **akm-eval 데이터 전송** — 7단계 `api/submit` POST. **설치본에 잠금 적용(2026-09-22)**: SKILL.md 끝 오버라이드 절이 `consent.submit=false`를 고정하며 본문보다 우선한다. 업스트림 갱신 시 이 절이 덮이지 않았는지 확인할 것.
 2. **저작권** — cmds-system-files·강의자료·HR 플레이북·PDF는 CMDSPACE 저작물(외부 재배포 금지). cmux-tips CC BY 4.0. 나머지 MIT/미표기.
 3. **볼트 충돌** — cmds-vault·cmds-llm-wiki·cmds-system-files의 rules(들여쓰기 TAB·frontmatter 7속성·100~900 폴더)는 정훈님 볼트 StarterKit 규약과 다름. 문구 차용만.
 4. **플러그인 Python 의존성** — claude-blog는 플러그인 설치만으로 textstat·patchright·google-genai가 안 깔린다. `dependency_smoke.py --component preflight|browser|audio`로 검사 후 `pip install --user` 보완(2026-08-28 수행).
