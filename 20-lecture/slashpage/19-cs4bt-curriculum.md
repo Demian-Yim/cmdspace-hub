@@ -14,7 +14,7 @@ fetched: 2026-08-28
 
 ![Image](https://upload.cafenono.com/image/slashpageHome/20240908/224857_ZjmBHgaUEtRkdCF7Ip?q=80&s=1280x180&t=outside&f=webp)
 
-(문의: cs4bt.academy@gmail.com)
+(문의: [메일 주소 비공개])
 
 ## 1. 기초과정
 

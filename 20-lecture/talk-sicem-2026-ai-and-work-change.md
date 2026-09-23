@@ -456,7 +456,7 @@ ONE SENTENCE TO REMEMBER
 ![QR to sicem.cmdspace.work](sicem-qr-large.png)
 
 sicem.cmdspace.work
-Yohan Koo · johnfkoo951@gmail.com
+Yohan Koo · [메일 주소 비공개]
 
 감사합니다.
 
@@ -512,7 +512,7 @@ GET IN TOUCH · 연락 및 팔로우
 
 Email
 
-johnfkoo951@gmail.com
+[메일 주소 비공개]
 [🔗
 
 Link in Bio
@@ -549,7 +549,7 @@ CMDS Class
 
 교보문고 구매 →](https://product.kyobobook.co.kr/detail/S000219435979)
 
-© 2026 Yohan Koo · johnfkoo951@gmail.com
+© 2026 Yohan Koo · [메일 주소 비공개]
 
 SICEM 2026 Keynote · Built with Claude Code
 

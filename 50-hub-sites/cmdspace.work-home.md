@@ -302,7 +302,7 @@ CMDSPACE 대표·수석 컨텍스트 설계자 · 차의과학대학교 겸임�
 ![구요한](/assets/profile/profile-06.jpg)
 
 개인 연락
-johnfkoo951@gmail.com
+[메일 주소 비공개]
 [Bio · 모든 링크 보기](https://bio.cmdspace.work)
 
 In the room
